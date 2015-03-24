@@ -3,6 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/**
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                             *
+ *            Parallel and Distributed Computing               *
+ *             Laboratory work #3. C#                          *
+ *                                                             *
+ * Task: A = sort(B)*α +  β*Z*(MO*MK)                          *
+ *                                                             *
+ * File Matrix.cs                                              *
+ * @author Kuzmenko Volodymyr                                  *
+ * @group IO-21                                                *
+ * @date 24.03.15                                              *
+ *                                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ */
 
 namespace pro2_lab3
 {
