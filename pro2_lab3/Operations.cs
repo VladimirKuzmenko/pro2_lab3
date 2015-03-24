@@ -14,21 +14,18 @@ namespace pro2_lab3
             Vector vector = new Vector(n);
             for (int i = 0; i < n; i++)
             {
-                vector.set(i, value);
+                vector.set(i, n-i);
             }
             return vector;
         }
 
-        public static void outputVector(Vector vector, String nameOfFile)
+        public static void outputVector(Vector vector)
         {
             if (vector.size() < 9)
             {
                 Console.WriteLine(vector.toString());
             }
-            else
-            {
-                System.IO.File.WriteAllText(@nameOfFile, vector.toString());
-            }
+            
         }
 
         public static Vector mult(Vector left, Matrix right, int l, int r)
