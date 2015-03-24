@@ -57,6 +57,37 @@ namespace pro2_lab3
             sem1_4.Release();
             Evn4_B.WaitOne();
 
+            int alpha1 = alpha;
+
+            mutex_beta.WaitOne();
+            int beta1 = beta;
+            mutex_beta.ReleaseMutex();
+
+            Vector Z1 = new Vector(N);
+
+            lock (lock_Z)
+            {
+                Z1 = Z;
+            }
+
+            Matrix MO1 = new Matrix(N);
+            try
+            {
+                Monitor.Enter(monitor_MO);
+                MO1 = MO;
+            }
+            finally
+            {
+                Monitor.Exit(monitor_MO);
+            }
+
+            buf = add(mult(alpha1,B,0,H),mult(beta1,mult(Z,mult(MO1, MK,0,H),0,H),0,H),0,H);
+            for (int i = 0; i < H; i++)
+            {
+                A.set(i, buf.get(i));
+            }
+
+            sem1A.Release();
             Console.WriteLine("Task 1 finished");
         }
 
@@ -76,6 +107,38 @@ namespace pro2_lab3
             sem2_1.Release();
 
             Evn4_B.WaitOne();
+
+            int alpha2 = alpha;
+
+            mutex_beta.WaitOne();
+            int beta2 = beta;
+            mutex_beta.ReleaseMutex();
+
+            Vector Z2 = new Vector(N);
+
+            lock (lock_Z)
+            {
+                Z2 = Z;
+            }
+
+            Matrix MO2 = new Matrix(N);
+            try
+            {
+                Monitor.Enter(monitor_MO);
+                MO2 = MO;
+            }
+            finally
+            {
+                Monitor.Exit(monitor_MO);
+            }
+
+            buf = add(mult(alpha2, B, H, 2 * H), mult(beta2, mult(Z, mult(MO2, MK, H, 2 * H), H, 2 * H), H, 2 * H), H, 2 * H);
+            for (int i = H; i < 2*H; i++)
+            {
+                A.set(i, buf.get(i));
+            }
+
+            sem2A.Release();
 
             Console.WriteLine("Task 2 finished");
         }
@@ -100,6 +163,39 @@ namespace pro2_lab3
 
             sem3_4.Release();
             Evn4_B.WaitOne();
+
+            int alpha3 = alpha;
+
+            mutex_beta.WaitOne();
+            int beta3 = beta;
+            mutex_beta.ReleaseMutex();
+
+            Vector Z3 = new Vector(N);
+
+            lock (lock_Z)
+            {
+                Z3 = Z;
+            }
+
+            Matrix MO3 = new Matrix(N);
+            try
+            {
+                Monitor.Enter(monitor_MO);
+                MO3 = MO;
+            }
+            finally
+            {
+                Monitor.Exit(monitor_MO);
+            }
+
+            buf = add(mult(alpha3, B, 2*H, 3 * H), mult(beta3, mult(Z, mult(MO3, MK, 2*H, 3 * H), 2*H, 3 * H), 2*H, 3 * H),2*H, 3 * H);
+            for (int i = 2*H; i < 3 * H; i++)
+            {
+                A.set(i, buf.get(i));
+            }
+
+            sem3A.Release();
+
 
             Console.WriteLine("Task 3 finished");
         }
@@ -130,6 +226,41 @@ namespace pro2_lab3
 
             Evn4_B.Set();
 
+            int alpha4 = alpha;
+
+            mutex_beta.WaitOne();
+            int beta4 = beta;
+            mutex_beta.ReleaseMutex();
+
+            Vector Z4 = new Vector(N);
+
+            lock (lock_Z)
+            {
+                Z4 = Z;
+            }
+
+            Matrix MO4 = new Matrix(N);
+            try
+            {
+                Monitor.Enter(monitor_MO);
+                MO4 = MO;
+            }
+            finally
+            {
+                Monitor.Exit(monitor_MO);
+            }
+
+            buf = add(mult(alpha4, B, 3 * H, N), mult(beta4, mult(Z, mult(MO4, MK, 3 * H, N), 3 * H, N), 3 * H, N), 3 * H, N);
+            for (int i = 3 * H; i < N; i++)
+            {
+                A.set(i, buf.get(i));
+            }
+
+            sem1A.WaitOne();
+            sem2A.WaitOne();
+            sem3A.WaitOne();
+
+            outputVector(A);
             
             Console.WriteLine("Task 4 finished");
 

@@ -14,7 +14,7 @@ namespace pro2_lab3
             Vector vector = new Vector(n);
             for (int i = 0; i < n; i++)
             {
-                vector.set(i, n-i);
+                vector.set(i, value);
             }
             return vector;
         }
